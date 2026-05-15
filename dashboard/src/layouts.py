@@ -62,7 +62,6 @@ def body_layout_tabs(df) -> None:
         st.subheader("Qualitative Impact")
         st.caption("CAPTION HERE.")
         st.write("Charts for qualitative impact section")
-    )
 
     # with t6:
         # If we want people to download our data, we'd use this guy in some way.
@@ -72,7 +71,7 @@ def body_layout_tabs(df) -> None:
             # data=df.to_csv(index=False),
             # file_name="west_states_filtered_v2.csv",
             # mime="text/csv",
-            # icon=":material/download:",
+            # icon=":material/download:")
 
         ## Source: https://docs.streamlit.io/develop/api-reference/widgets/st.download_button
         ## Source: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html
