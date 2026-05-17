@@ -2,59 +2,56 @@ import pandas as pd
 import streamlit as st
 
 
-def render_filters(df: pd.DataFrame) -> dict:
-    """Rendering filter widgets and returning the chosen values."""
-    st.sidebar.header("Filters")
+def render_booking_filters(df: pd.DataFrame, key_prefix: str = "") -> pd.DataFrame:
+    """
+    Filter widgets for the Book a Librarian appointment data.
+    Returns a filtered dataframe based on what the user selects.
+    key_prefix keeps widget keys unique if used in multiple places.
+    """
+    col1, col2 = st.columns(2)
 
-    boroughs = ["All"] + sorted(df["borough"].unique().tolist())
-    channels = ["All"] + sorted(df["channel"].unique().tolist())
-    complaint_types = sorted(df["complaint_type"].unique().tolist())
+    with col1:
+        all_years = sorted(df["AcademicYear"].unique().tolist())
+        selected_years = st.multiselect(
+            "Filter by Academic Year",
+            options=all_years,
+            default=all_years,
+            key=f"{key_prefix}_years"
+        )
 
-    borough = st.sidebar.selectbox("Borough", boroughs, index=0)
-    channel = st.sidebar.selectbox("Channel", channels, index=0)
+    with col2:
+        all_services = sorted(df["Service"].unique().tolist())
+        selected_services = st.multiselect(
+            "Filter by Service Type",
+            options=all_services,
+            default=all_services,
+            key=f"{key_prefix}_services"
+        )
 
-    # TODO (DEMO): Convert this selectbox to a multiselect (and update filtering logic)
-    complaint = st.sidebar.selectbox("Complaint Type", ["All"] + complaint_types, index=0)
+    filtered = df[
+        (df["AcademicYear"].isin(selected_years)) &
+        (df["Service"].isin(selected_services))
+    ]
 
-    # Response time slider
-    min_rt, max_rt = float(df["response_time_days"].min()), float(df["response_time_days"].max())
-    rt_range = st.sidebar.slider(
-        "Response time (days)",
-        min_value=0.0,
-        max_value=float(max_rt),
-        value=(0.0, float(min(30.0, max_rt))),
-        step=0.5,
+    if filtered.empty:
+        st.warning("No appointments match your filters.")
+        return filtered
+
+    st.caption(f"Showing {len(filtered)} of {len(df)} total appointments")
+    return filtered
+
+
+def render_satisfaction_filters(df: pd.DataFrame, key_prefix: str = "") -> pd.DataFrame:
+    """
+    Program filter for the student satisfaction survey data.
+    Lets Jan or staff slice by DO, PT, OT, MAMS separately.
+    Returns a filtered dataframe.
+    """
+    programs = sorted(df["LevelName"].unique().tolist())
+    selected = st.multiselect(
+        "Filter by Program",
+        options=programs,
+        default=programs,
+        key=f"{key_prefix}_programs"
     )
-
-    # TODO (IN-CLASS): Add a checkbox toggle to cap outliers (e.g., at 99th percentile)
-    cap_outliers = st.sidebar.checkbox("Cap extreme response times", value=False)
-
-    return {
-        "borough": borough,
-        "channel": channel,
-        "complaint": complaint,
-        "rt_range": rt_range,
-        "cap_outliers": cap_outliers,
-    }
-
-
-def apply_filters(df: pd.DataFrame, selections: dict) -> pd.DataFrame:
-    """Applying filter selections to the dataframe."""
-    out = df.copy()
-
-    if selections["borough"] != "All":
-        out = out[out["borough"] == selections["borough"]]
-
-    if selections["channel"] != "All":
-        out = out[out["channel"] == selections["channel"]]
-
-    if selections["complaint"] != "All":
-        out = out[out["complaint_type"] == selections["complaint"]]
-
-    lo, hi = selections["rt_range"]
-    out = out[(out["response_time_days"] >= lo) & (out["response_time_days"] <= hi)]
-
-    # TODO (IN-CLASS): Implement outlier capping when cap_outliers is checked
-    # HINT: use out["response_time_days"].quantile(0.99)
-
-    return out.reset_index(drop=True)
+    return df[df["LevelName"].isin(selected)]
