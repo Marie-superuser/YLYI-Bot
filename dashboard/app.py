@@ -182,6 +182,6 @@ elif page == "Insight Bot":
     st.markdown("## AI Insights Bot")
     st.info(
         "The AI bot is coming in the next step. "
-        "It will use LlamaIndex + ChromaDB + Anthropic Claude, "
+        "It will use LlamaIndex + ChromaDB "
         "modeled on SJSU Library's KingbotGPT architecture."
     )
