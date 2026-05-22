@@ -106,11 +106,46 @@ if page == "Home":
     with t2:
         st.subheader("Collection Value")
         st.caption("Physical book circulation from LibraryWorld, AY21-22 through AY24-25.")
+        col_cir1, col_cir2, col_cir3, col_cir4, col_cir5 = st.columns(5)
+        with col_cir1:
+            st.metric("Total Checkouts", circ_df["Checkout"].sum())
+        with col_cir2:
+            st.metric("Total Checkins", circ_df["Checkin"].sum())
+        with col_cir3:
+            st.metric("Total Renewals", circ_df["Renew"].sum())
+        with col_cir4:
+            st.metric("Total Lost Items", circ_df["Lost"].sum())
+        with col_cir5:
+            st.metric("Total Found Items", circ_df["Found"].sum())
+        tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Checkouts", "Checkins", "Renews", "Hold", "Lost Items", "Found Items"])
+
         if circ_df.empty:
             st.error("No circulation data found.")
         else:
-            plot_circulation_by_year(circ_df)
-            plot_circulation(circ_df)
+            with tab1:
+
+                plot_circulation_by_year(circ_df, "Checkin")
+                plot_circulation(circ_df, "Checkin")
+            with tab2:
+                plot_circulation_by_year(circ_df, "Checkout")
+                plot_circulation(circ_df, "Checkout")
+            with tab3:
+
+                plot_circulation_by_year(circ_df, "Renew")
+                plot_circulation(circ_df, "Renew")
+            with tab4:
+
+                plot_circulation_by_year(circ_df, "Hold")
+                plot_circulation(circ_df, "Hold")
+
+            with tab5:
+
+                plot_circulation_by_year(circ_df, "Lost")
+                plot_circulation(circ_df, "Lost")
+            with tab6:
+
+                plot_circulation_by_year(circ_df, "Found")
+                plot_circulation(circ_df, "Found")
             st.warning("Physical checkouts dropped from 415 in AY21-22 to 55 in AY24-25 — an 87% decline. Digital usage data coming when database reports are available.")
 
     with t3:

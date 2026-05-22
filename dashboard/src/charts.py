@@ -250,11 +250,21 @@ def plot_satisfaction_comparison(df: pd.DataFrame) -> None:
     )
     st.plotly_chart(fig, use_container_width=True)
 
-def plot_circulation(df: pd.DataFrame) -> None:
+def plot_circulation(df: pd.DataFrame, metric: str) -> None:
     """
     Physical book checkouts by month over time.
     Tells a story of how students are using the library
     """
+    names = {
+        "Checkout": "Checkouts",
+        "Checkin": "Checkins",
+        "Renew": "Renewals",
+        "Hold": "Holds",
+        "Lost": "Items Lost",
+        "Found": "Items Found"
+    }
+
+
     if df.empty:
         st.info("No circulation data available.")
         return
@@ -262,15 +272,15 @@ def plot_circulation(df: pd.DataFrame) -> None:
     fig = px.line(
         df,
         x="Month",
-        y="Checkout",
+        y=f"{metric}",
         color="AcademicYear",
         markers=True,
         color_discrete_sequence=[PACIFIC_BLUE, FOREST_GREEN, VINEYARD_GREEN, NEW_LEAF],
     )
     fig.update_layout(
-        title="Physical Book Checkouts by Month",
+        title=f"Physical Book {names[metric]} by Month",
         xaxis_title="Month",
-        yaxis_title="Checkouts",
+        yaxis_title=f"{names[metric]}",
         plot_bgcolor="white",
         paper_bgcolor="white",
         yaxis=dict(gridcolor="#f0f0f0"),
@@ -279,31 +289,40 @@ def plot_circulation(df: pd.DataFrame) -> None:
     st.plotly_chart(fig, use_container_width=True)
 
 
-def plot_circulation_by_year(df: pd.DataFrame) -> None:
+def plot_circulation_by_year(df: pd.DataFrame, metric: str) -> None:
     """
     Total physical checkouts per academic year as a bar chart
     """
+    names = {
+        "Checkout": "Checkouts",
+        "Checkin": "Checkins",
+        "Renew": "Renewals",
+        "Hold": "Holds",
+        "Lost": "Items Lost",
+        "Found": "Items Found"
+    }
     if df.empty:
         st.info("No circulation data available.")
         return
 
-    agg = df.groupby("AcademicYear", as_index=False)["Checkout"].sum()
+    agg = df.groupby("AcademicYear", as_index=False)[f"{metric}"].sum()
     agg = agg.sort_values("AcademicYear")
 
     fig = px.bar(
         agg,
         x="AcademicYear",
-        y="Checkout",
-        text="Checkout",
+        y=f"{metric}",
+        text=f"{metric}",
         color_discrete_sequence=[FOREST_GREEN],
     )
     fig.update_traces(textposition="outside")
     fig.update_layout(
-        title="Total Physical Checkouts by Academic Year",
+        title=f"Total Physical {names[metric]} by Academic Year",
         xaxis_title="Academic Year",
-        yaxis_title="Total Checkouts",
+        yaxis_title=f"Total {names[metric]}",
         plot_bgcolor="white",
         paper_bgcolor="white",
         yaxis=dict(gridcolor="#f0f0f0"),
     )
     st.plotly_chart(fig, use_container_width=True)
+
