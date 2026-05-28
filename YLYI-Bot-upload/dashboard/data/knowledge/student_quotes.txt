@@ -1,0 +1,50 @@
+PNWU Student Satisfaction Survey - Open Text Comments
+
+These are real anonymized student comments from the 2023 and 2025 surveys.
+The AI bot can use these to answer questions about qualitative student feedback.
+
+=== 2023 COMMENTS (Question 21) ===
+
+POSITIVE:
+- "All of my interactions with library staff have been warm, professional, and generally excellent."
+- "The librarians at this school are really great. Every time I've needed help faxing something, finding a book, or with research, they've gone above and beyond."
+- "Megan, Mary and Jan deserve raises."
+- "Very helpful and knowledgeable staff, no complaints!"
+- "Library staff is AMAZING!!!"
+- "Great and friendly staff."
+- "Library staff has always been very helpful in responding to requests and instructive."
+
+CONCERNS:
+- "It is extremely frustrating to try to get help as a 3rd year student. When we're on rotations, we can't meet during normal business hours because we're at work and that is the only time you can book a librarian."
+- "Never once used the library as a resource, not sure what their utility is in our first two years."
+- "I wish we could have been oriented at the beginning of school to the library. I learned how to check out a book about 1 week ago."
+- "Our library is very small. Libraries are often common study spaces but there really isn't much study space available."
+- "I honestly didn't even know we had a library."
+
+=== 2025 COMMENTS (Question 24) ===
+
+POSITIVE:
+- "The librarians are essential and super helpful with helping with research and getting resources to students."
+- "The library staff have been incredible in providing support and guidance for independent research projects."
+- "Mary and Jan are extraordinary. They have been such wonderful supports and guides throughout my time at PNWU."
+- "Jan's the best."
+- "Amazing, effective, and responsive staff, from the leadership on down."
+- "The library is incredible. I use so many textbooks, databases, everything. Truly, they are the BEST. I owe my academic success to all they offer us."
+- "The wonderful folks working at the library are a wonderful resource. The quickest I've ever received an ILL was two hours after request. They deserve a raise!!!!!"
+- "I access information through the library databases every day during rotations."
+
+CONCERNS:
+- "I didn't even know we had a library."
+- "Frequently had difficulty accessing specific OT journals for research."
+- "I wish we had access to more databases, even commonly used ones like Elsevier or Wiley Online."
+- "Access to further journals and resources for research would be extremely helpful, now we are very limited."
+- "I run into the need for ILL a lot — if I'm reviewing something after rotations and only have one night, it's not practical to expect an ILL to come back in time."
+- "I wish the library were bigger, with good seating for studying."
+
+KEY THEMES ACROSS BOTH YEARS:
+1. Staff are consistently praised — warmth, responsiveness, and expertise are recurring themes.
+2. Space is a persistent concern — the library is seen as too small for studying.
+3. Visibility gap — multiple students across both years said they did not know the library existed or what it offered.
+4. Rotation students face access barriers — business hours don't work for clinical students.
+5. Database and journal access gaps — students want more, especially clinical tools like AMBOSS, UWorld, Elsevier.
+6. ILL is valued but speed matters for clinical students who need articles same-day.

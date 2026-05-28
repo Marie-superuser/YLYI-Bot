@@ -1,0 +1,94 @@
+﻿Library Value Dashboard: Metrics, Systems, and Benchmarks
+The following table reorganizes the library value metrics by separating the Data Source from the System or Repository used to capture and manage that data. This alignment ensures that the dashboard data is traceable to specific library operations and institutional software.
+Dashboard Metric
+	Data Source
+	System or Repository
+	Desirable Outcome & Statistical Benchmark
+	Strategic Plan Alignment (PNWU & Library)
+	Holistic Student Engagement
+	Appointment logs and workshop attendance records
+	"Book a Librarian" research and access appointment system
+	Achieve a 5% annual increase in student appointments until saturation
+	PNWU Goal 5: Supportive learning environment
+Library Focus: Student Engagement
+	Student Learning Outcomes
+	Interactive post-module quiz scores
+	Moodle (LMS) or digital learning modules
+	75% of students will score ≥80% on quizzes evaluating source credibility
+	PNWU Goal 1: Academic rigor and career readiness
+Library Focus: Student Engagement
+	Student Confidence & Well-being
+	Pre- and post-session survey responses
+	Surveys and polls integrated into virtual displays or LMS
+	At least 70% of surveyed students will report increased confidence in database use
+	PNWU Goal 5: Promote student well-being and success
+Library Focus: Student Engagement
+	Financial Accessibility (Debt Reduction)
+	Inventory records and projected student savings
+	Master course materials database (managed by the Course Materials Manager)
+	Ensure 100% of required materials are available to students by the first day of class
+	PNWU Goal 2: Reduce student debt and financial barriers
+Library Focus: Resource Advocacy
+	Institutional Cost Avoidance
+	Fiscal comparisons between ILL and classroom licensing fees
+	Interlibrary loan (ILL) software and the Budget Category Expense Map
+	Maintain the 37:1 ratio, fulfilling 37 research requests for the price of one classroom article
+	PNWU Goal 4: Optimize operations and sustainability
+Library Focus: Resource Advocacy
+	Collection Value (Underutilized Resources)
+	Usage analytics including clicks, views, and downloads
+	Usage data harvesters, EZproxy logs, and vendor reports
+	Achieve a 15% average usage increase for promoted high-value resources
+	PNWU Goal 1: Align library resources with academic needs
+Library Focus: Collection Value
+	Qualitative Student Impact
+	Anonymized student quotes and narratives
+	24/7/365 chat reference transcripts, suggestion boxes, and survey results
+	Collect at least 5 student quotes or stories annually reflecting library impact
+	PNWU Goal 4: Monitor mission fulfillment indicators
+Library Focus: Service Visibility
+	Stakeholder Visibility & AI Integration
+	AI bot interaction logs and institutional report references
+	"Library by the Numbers" Dashboard and AI Insights Bot (built via Python/Streamlit)
+	At least 3 institutional stakeholders reference or share dashboard data externally
+	PNWU Goals 1 & 4: Integrate AI and modernize infrastructure
+Library Focus: Service Visibility
+	General Student Satisfaction
+	Percentages of student satisfaction scores
+	Library Experience Survey and PNWU Employee Climate Survey
+	Maintain library resource/service satisfaction scores of 90% or higher
+	PNWU Goal 1: Institutional quality
+Library Focus: Student Engagement
+	________________
+
+
+Key Technical Insights
+* Centralized Data Pipeline: To ensure sustainability, the library aims to create a semi-automated model for annual updates. This includes a standardized method for cleaning and normalizing data from disparate sources like EZproxy and Moodle.
+* AI Interpretation: The AI Insights Bot is trained on the library's specific knowledge base to interpret raw numbers from these repositories (e.g., explaining why a 15% increase in instructional interactions matters for PNWU Goal 1).
+* Infrastructure Sustainability: The library is transitioning its internal documentation and handbook to a structured SharePoint repository to ensure that the staff responsible for these metrics have a "go-to resource" for maintenance workflows.
+________________
+
+
+Sample questions to ask the dashboard AI:
+
+
+Students (Focus: Affordability, academic support, and peer success narratives.)
+* How much money have I collectively saved through the library's Course Materials Initiative this year?
+* Is it worth my time to use the 'Book a Librarian' service?  What can I expect?
+* How does the Clinical Pathways course in Moodle help me in my future clinical career?
+* Are other students satisfied with the library’s resources?
+* What is the most popular resources consulted for Anatomy?
+
+
+Faculty (Focus: Curriculum alignment, resource costs, and student outcomes.)
+* What are the top three most-used resources for my specific academic program right now?
+* How many students reached the 80% competency benchmark in the information literacy modules for my course?
+* What is the cost difference between an article license for my classroom versus the library fulfilling a request through Interlibrary Loan?
+* What datasets can I use for my personal research on ….?
+
+
+Administration/Staff (Focus: Operational efficiency, workflow improvement, and service visibility.)
+* What is the trend for self-service activity (like 24/7 chat) compared to manual reference appointments?
+* Are students feeling more confident about finding authoritative health information after using the library's Moodle modules?
+* Can you explain the trend in how often students are using the 24/7 chat reference compared to last year?
+* How does the library specifically support my preparation for standardized licensure exams?

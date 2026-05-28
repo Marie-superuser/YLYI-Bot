@@ -1,0 +1,72 @@
+services:
+
+  # ── Ollama — model inference ────────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ylyi-ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    # Uncomment the block below on Linux hosts with NVIDIA Container Toolkit for GPU acceleration.
+    # On macOS (Apple Silicon / Intel), remove or leave commented — Docker Desktop has no GPU passthrough.
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+
+  # ── Open Web UI — chat interface + text-to-SQL tool ────────────────────────
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: ylyi-open-webui
+    depends_on:
+      ollama:
+        condition: service_healthy
+    volumes:
+      - openwebui_data:/app/backend/data
+      - ./data:/app/ylyi-data:ro        # SQLite db accessible to Open Web UI tool
+    ports:
+      - "3000:8080"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
+      - WEBUI_ADMIN_EMAIL=${WEBUI_ADMIN_EMAIL}
+      - WEBUI_ADMIN_PASSWORD=${WEBUI_ADMIN_PASSWORD}
+      - DEFAULT_USER_ROLE=admin
+      - ENABLE_RAG_WEB_SEARCH=false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+  # ── Ingestor — Excel → SQLite ───────────────────────────────────────────────
+  ingestor:
+    build: ./ingestor
+    container_name: ylyi-ingestor
+    depends_on:
+      ollama:
+        condition: service_healthy
+    volumes:
+      - ./data:/data/source:ro          # source xlsx files (read-only)
+      - ./data:/data                    # SQLite db written to /data/ylyi.db
+    environment:
+      - SOURCE_DIR=/data/source
+      - DB_PATH=/data/ylyi.db
+    restart: on-failure
+
+volumes:
+  ollama_data:
+  openwebui_data:
